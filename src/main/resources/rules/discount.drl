@@ -1,0 +1,11 @@
+package min_package;
+import com.example.rule.model.Order;
+global com.example.rule.model.OrderDiscount $orderDiscount;
+rule "Discount for Customer Name"
+  enabled true
+  when
+    $order: Order(customer.name contains "Min");
+  then
+    $order.setAmount($order.getAmount() * 0.5);
+    $orderDiscount.setAmount($order.getAmount());
+end
